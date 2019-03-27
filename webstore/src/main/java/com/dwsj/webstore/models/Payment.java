@@ -1,9 +1,6 @@
 package com.dwsj.webstore.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Payment")
@@ -13,9 +10,21 @@ public class Payment {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "Payment_Type")
+    @Column(name = "payment_type")
     private String paymentType;
 
+/*   CAUSING AN ERROR
+    @OneToOne(mappedBy="payment", cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private Payment payment;
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+*/
     public Payment() {
     }
 

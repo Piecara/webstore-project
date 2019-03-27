@@ -17,7 +17,6 @@ public class AnClient {
     private String surname;
 
     @OneToOne(cascade = CascadeType.ALL)
-
     @JoinColumn(name = "id_address")
     private Address address;
 

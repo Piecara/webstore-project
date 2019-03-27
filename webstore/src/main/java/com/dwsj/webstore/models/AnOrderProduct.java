@@ -1,9 +1,6 @@
 package com.dwsj.webstore.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "An_Order_Product")
@@ -13,28 +10,22 @@ public class AnOrderProduct {
     @Column(name = "id")
     private int id;
 
+  //  @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH, CascadeType.PERSIST,CascadeType.REFRESH})
+  //  @JoinColumn(name = "id")
+  //  private AnOrder anOrder;
+
     @Column(name = "id_anOrder")
-    private int idOrder;
+    private  int idAnOrder;
 
     @Column(name = "id_product")
     private int idProduct;
 
-
     public AnOrderProduct() {
     }
 
-    public AnOrderProduct(int idOrder, int idProduct) {
-        this.idOrder = idOrder;
+    public AnOrderProduct(int idAnOrder, int idProduct) {
+        this.idAnOrder = idAnOrder;
         this.idProduct = idProduct;
-    }
-
-    @Override
-    public String toString() {
-        return "AnOrderProduct{" +
-                "id=" + id +
-                ", idOrder=" + idOrder +
-                ", idProduct=" + idProduct +
-                '}';
     }
 
     public int getId() {
@@ -45,12 +36,12 @@ public class AnOrderProduct {
         this.id = id;
     }
 
-    public int getIdOrder() {
-        return idOrder;
+    public int getIdAnOrder() {
+        return idAnOrder;
     }
 
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
+    public void setIdAnOrder(int idAnOrder) {
+        this.idAnOrder = idAnOrder;
     }
 
     public int getIdProduct() {
