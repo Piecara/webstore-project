@@ -11,7 +11,7 @@ public class Address {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "building_Number")
+    @Column(name = "building_number")
     private int buildingNumber;
 
     @Column(name = "street")
@@ -23,6 +23,14 @@ public class Address {
     @Column(name = "country")
     private String country;
 
+
+    /*
+    * dodanie
+    * @OneToOne(mappedBy="address", cascade=CascadeType.{type})
+    * private AnClient anClient
+    * getter/setter
+    * spowoduje polaczenie bi-dir hibernate bedzie szukal address'u w klasie AnClient do ktorego sie odnosi
+    * */
     public Address() {
     }
 

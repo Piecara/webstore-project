@@ -1,9 +1,8 @@
 package com.dwsj.webstore.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "An_Order")
@@ -16,20 +15,35 @@ public class AnOrder {
     @Column(name = "id_client")
     private int idClient;
 
-    @Column(name = "id_delivery")
-    private int idDelivery;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_delivery")
+    private Delivery delivery;
 
-    @Column(name = "id_payment")
-    private int idPayment;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_payment")
+    private Payment payment;
+
+
+    //@OneToMany(mappedBy = "anOrder")
+    //private List<AnOrderProduct> anOrderProducts;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinTable(
+            name = "An_Order_Product",
+            joinColumns = @JoinColumn(name = "id_anOrder"),
+            inverseJoinColumns = @JoinColumn(name = "id_product"))
+    private List<Product> products;
 
 
     public AnOrder() {
     }
 
-    public AnOrder(int idClient, int idDelivery, int idPayment) {
+    public AnOrder(int idClient, Delivery delivery, Payment payment, List<Product> products) {
         this.idClient = idClient;
-        this.idDelivery = idDelivery;
-        this.idPayment = idPayment;
+        this.delivery = delivery;
+        this.payment = payment;
+        this.products = products;
     }
 
     @Override
@@ -37,9 +51,50 @@ public class AnOrder {
         return "AnOrder{" +
                 "id=" + id +
                 ", idClient=" + idClient +
-                ", idDelivery=" + idDelivery +
-                ", idPayment=" + idPayment +
+                ", delivery=" + delivery +
+                ", payment=" + payment +
+                ", products=" + products +
                 '}';
+    }
+
+    public void addProduct(Product product){
+        if(products == null){
+            products = new ArrayList<>();
+        }
+
+        products.add(product);
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
+  //  public List<AnOrderProduct> getAnOrderProducts() {
+  //      return anOrderProducts;
+  //  }
+
+  //  public void setAnOrderProducts(List<AnOrderProduct> anOrderProducts) {
+  //      this.anOrderProducts = anOrderProducts;
+  // }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 
     public int getId() {
@@ -58,19 +113,5 @@ public class AnOrder {
         this.idClient = idClient;
     }
 
-    public int getIdDelivery() {
-        return idDelivery;
-    }
 
-    public void setIdDelivery(int idDelivery) {
-        this.idDelivery = idDelivery;
-    }
-
-    public int getIdPayment() {
-        return idPayment;
-    }
-
-    public void setIdPayment(int idPayment) {
-        this.idPayment = idPayment;
-    }
 }

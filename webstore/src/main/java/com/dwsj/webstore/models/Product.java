@@ -1,6 +1,7 @@
 package com.dwsj.webstore.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -29,17 +30,26 @@ public class Product {
     @Column(name = "sold")
     private int sold;
 
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinTable(
+            name = "An_Order_Product",
+            joinColumns = @JoinColumn(name = "id_product"),
+            inverseJoinColumns = @JoinColumn(name = "id_anOrder"))
+    private List<AnOrder> anOrders;
+
+
     public Product() {
     }
 
-    //bez id
-    public Product(String name, int price, String category, String description, int inStock, int sold) {
+    public Product(String name, int price, String category, String description, int inStock, int sold, List<AnOrder> anOrders) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.description = description;
         this.inStock = inStock;
         this.sold = sold;
+        this.anOrders = anOrders;
     }
 
     @Override
@@ -52,7 +62,16 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", inStock=" + inStock +
                 ", sold=" + sold +
+                ", anOrders=" + anOrders +
                 '}';
+    }
+
+    public List<AnOrder> getAnOrders() {
+        return anOrders;
+    }
+
+    public void setAnOrders(List<AnOrder> anOrders) {
+        this.anOrders = anOrders;
     }
 
     public int getId() {
