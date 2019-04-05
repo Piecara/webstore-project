@@ -1,5 +1,7 @@
 package com.dwsj.webstore.models;
 
+import com.dwsj.webstore.product.model.Product;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

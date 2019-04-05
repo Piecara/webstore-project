@@ -1,8 +1,8 @@
-package com.dwsj.webstore.services.impl;
+package com.dwsj.webstore.product.service;
 
-import com.dwsj.webstore.models.Product;
-import com.dwsj.webstore.repositories.ProductRepository;
-import com.dwsj.webstore.services.ProductService;
+import com.dwsj.webstore.product.model.Product;
+import com.dwsj.webstore.product.repository.ProductRepository;
+import com.dwsj.webstore.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

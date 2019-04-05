@@ -1,14 +1,11 @@
-package com.dwsj.webstore.controllers;
+package com.dwsj.webstore.product.controller;
 
-import com.dwsj.webstore.models.Product;
-import com.dwsj.webstore.repositories.ProductRepository;
-import com.dwsj.webstore.services.ProductService;
+import com.dwsj.webstore.product.service.ProductService;
+import com.dwsj.webstore.product.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController("/products")
 public class ProductController {

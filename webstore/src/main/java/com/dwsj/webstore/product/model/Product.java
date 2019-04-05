@@ -1,5 +1,6 @@
-package com.dwsj.webstore.models;
+package com.dwsj.webstore.product.model;
 
+import com.dwsj.webstore.models.AnOrder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;

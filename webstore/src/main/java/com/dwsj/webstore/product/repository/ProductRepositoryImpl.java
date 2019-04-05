@@ -1,13 +1,5 @@
-package com.dwsj.webstore.repositories.impl;
+package com.dwsj.webstore.product.repository;
 
-import com.dwsj.webstore.models.Product;
-import com.dwsj.webstore.repositories.ProductRepository;
-import org.springframework.stereotype.Repository;
-
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 /*
 @Repository
 public class ProductRepositoryImpl implements ProductRepository  {
