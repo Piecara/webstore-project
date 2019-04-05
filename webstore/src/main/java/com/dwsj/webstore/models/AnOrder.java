@@ -28,7 +28,7 @@ public class AnOrder {
     //@OneToMany(mappedBy = "anOrder")
     //private List<AnOrderProduct> anOrderProducts;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @JoinTable(
             name = "An_Order_Product",
             joinColumns = @JoinColumn(name = "id_anOrder"),

@@ -1,5 +1,7 @@
 package com.dwsj.webstore.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -30,12 +32,8 @@ public class Product {
     @Column(name = "sold")
     private int sold;
 
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinTable(
-            name = "An_Order_Product",
-            joinColumns = @JoinColumn(name = "id_product"),
-            inverseJoinColumns = @JoinColumn(name = "id_anOrder"))
+    @JsonIgnore
+  @ManyToMany(mappedBy = "products")
     private List<AnOrder> anOrders;
 
 

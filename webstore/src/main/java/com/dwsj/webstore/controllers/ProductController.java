@@ -2,45 +2,37 @@ package com.dwsj.webstore.controllers;
 
 import com.dwsj.webstore.models.Product;
 import com.dwsj.webstore.repositories.ProductRepository;
+import com.dwsj.webstore.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController("/products")
 public class ProductController {
 
-    /*
     @Autowired
     ProductService productService;
 
-
-    @RequestMapping(name = "/")
-    public List<Product> getProducts(){
-        return productService.getAllProducts();
-    }
-*/
-
-
-
-    @Autowired
-    ProductRepository productRepository;
-
     @RequestMapping(name = "/all")
     public List<Product> gap(){
-        return productRepository.findAll();
+        return productService.getAllProducts();
     }
 
-    @RequestMapping("/{category}")
-    public List<Product> gpbc(@PathVariable("category") String productCategory){
-        return productRepository.findProductsByCategory(productCategory);
+    @RequestMapping(method = RequestMethod.POST,name = "/add")
+    public void ap(@RequestBody Product product){
+        productService.addProduct(product);
     }
 
-    @RequestMapping("/{id}")
-    public Product gpbi(@PathVariable("id") long productId){
-        return productRepository.findProductById(productId);
+    @RequestMapping(method = RequestMethod.DELETE, name = "/{id}")
+    public void dp(@PathVariable("id") String id){
+        productService.deleteProduct(id);
     }
+
+
+
 
 }
+//data transfer object

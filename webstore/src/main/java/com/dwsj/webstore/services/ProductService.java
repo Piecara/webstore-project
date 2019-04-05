@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/*
+
 @Service
 public interface ProductService {
     List<Product> getAllProducts();
-
+    void addProduct(Product product);
+    void deleteProduct(String id);
 }
-*/
+
