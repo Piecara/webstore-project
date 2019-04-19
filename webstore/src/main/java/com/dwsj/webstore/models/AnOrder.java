@@ -1,11 +1,19 @@
 package com.dwsj.webstore.models;
 
 import com.dwsj.webstore.product.model.Product;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "An_Order")
 public class AnOrder {
@@ -35,85 +43,26 @@ public class AnOrder {
             name = "An_Order_Product",
             joinColumns = @JoinColumn(name = "id_anOrder"),
             inverseJoinColumns = @JoinColumn(name = "id_product"))
-    private List<Product> products;
+    private Set<Product> products;
 
 
     public AnOrder() {
     }
 
-    public AnOrder(int idClient, Delivery delivery, Payment payment, List<Product> products) {
+    public AnOrder(int idClient, Delivery delivery, Payment payment, Set<Product> products) {
         this.idClient = idClient;
         this.delivery = delivery;
         this.payment = payment;
         this.products = products;
     }
 
-    @Override
-    public String toString() {
-        return "AnOrder{" +
-                "id=" + id +
-                ", idClient=" + idClient +
-                ", delivery=" + delivery +
-                ", payment=" + payment +
-                ", products=" + products +
-                '}';
-    }
 
     public void addProduct(Product product){
         if(products == null){
-            products = new ArrayList<>();
+            products = new HashSet<>();
         }
 
         products.add(product);
     }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-  //  public List<AnOrderProduct> getAnOrderProducts() {
-  //      return anOrderProducts;
-  //  }
-
-  //  public void setAnOrderProducts(List<AnOrderProduct> anOrderProducts) {
-  //      this.anOrderProducts = anOrderProducts;
-  // }
-
-    public Delivery getDelivery() {
-        return delivery;
-    }
-
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
-    }
-
 
 }

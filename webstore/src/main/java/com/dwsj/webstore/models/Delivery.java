@@ -1,7 +1,13 @@
 package com.dwsj.webstore.models;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import javax.persistence.*;
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "Delivery")
 public class Delivery {
@@ -31,14 +37,6 @@ public class Delivery {
         this.deliveryType = deliveryType;
     }
 
-    @Override
-    public String toString() {
-        return "Delivery{" +
-                "id=" + id +
-                ", address=" + address +
-                ", deliveryType='" + deliveryType + '\'' +
-                '}';
-    }
 /*  CAUSING AN ERROR
     public Delivery getDelivery() {
         return delivery;
@@ -48,27 +46,5 @@ public class Delivery {
         this.delivery = delivery;
     }
 */
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public String getDeliveryType() {
-        return deliveryType;
-    }
-
-    public void setDeliveryType(String deliveryType) {
-        this.deliveryType = deliveryType;
-    }
 }

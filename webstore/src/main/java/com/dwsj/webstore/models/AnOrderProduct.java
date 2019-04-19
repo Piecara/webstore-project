@@ -1,7 +1,13 @@
 package com.dwsj.webstore.models;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import javax.persistence.*;
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "An_Order_Product")
 public class AnOrderProduct {
