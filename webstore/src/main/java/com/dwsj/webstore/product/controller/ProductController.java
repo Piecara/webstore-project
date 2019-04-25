@@ -5,6 +5,7 @@ import com.dwsj.webstore.product.service.ProductService;
 import com.dwsj.webstore.product.model.Product;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,6 @@ public class ProductController {
         return productService.findByName(name);
     }
 
-
     @GetMapping(value = "/id/{id}")
     public Product gpbi(@PathVariable final int id) {
         return productService.findById(id);
@@ -37,12 +37,14 @@ public class ProductController {
         return productService.findProductsByCategory(category);
     }
 
-
+    @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping(value = "/add")
-    public void ap(@RequestBody final Product product) {
+    public Product ap(@RequestBody final Product product) {
         productService.saveProduct(product);
+        return productService.findById(product.getId());
     }
 
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
     @DeleteMapping(name = "/delete/{id}")
     public void dp(@PathVariable(value = "id") final Long id) {
         productService.deleteById(id);
