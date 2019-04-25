@@ -1,12 +1,22 @@
-package com.dwsj.webstore.models;
+package com.dwsj.webstore.product.model;
 
+import com.dwsj.webstore.models.AnOrder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-
+@Getter
+@Setter
+@ToString
 @Entity
+@EqualsAndHashCode
 @Table(name = "Product")
 public class Product {
 
@@ -33,42 +43,20 @@ public class Product {
     private int sold;
 
     @JsonIgnore
-  @ManyToMany(mappedBy = "products")
-    private List<AnOrder> anOrders;
+    @ManyToMany(mappedBy = "products")
+    private Set<AnOrder> anOrders = new HashSet<>();
 
 
     public Product() {
     }
 
-    public Product(String name, int price, String category, String description, int inStock, int sold, List<AnOrder> anOrders) {
+    public Product(String name, int price, String category, String description, int inStock, int sold, Set<AnOrder> anOrders) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.description = description;
         this.inStock = inStock;
         this.sold = sold;
-        this.anOrders = anOrders;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", category='" + category + '\'' +
-                ", description='" + description + '\'' +
-                ", inStock=" + inStock +
-                ", sold=" + sold +
-                ", anOrders=" + anOrders +
-                '}';
-    }
-
-    public List<AnOrder> getAnOrders() {
-        return anOrders;
-    }
-
-    public void setAnOrders(List<AnOrder> anOrders) {
         this.anOrders = anOrders;
     }
 
@@ -126,5 +114,13 @@ public class Product {
 
     public void setSold(int sold) {
         this.sold = sold;
+    }
+
+    public Set<AnOrder> getAnOrders() {
+        return anOrders;
+    }
+
+    public void setAnOrders(Set<AnOrder> anOrders) {
+        this.anOrders = anOrders;
     }
 }
