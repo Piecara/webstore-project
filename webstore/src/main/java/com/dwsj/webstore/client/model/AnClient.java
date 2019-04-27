@@ -20,6 +20,9 @@ public class AnClient {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "surname")
     private String surname;
 
@@ -33,11 +36,12 @@ public class AnClient {
     public AnClient() {
     }
 
-    public AnClient(String name, String surname, Address address, String telephone) {
+    public AnClient(String name, String surname,String email, Address address, String telephone) {
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.telephone = telephone;
+        this.email = email;
     }
 
 }
