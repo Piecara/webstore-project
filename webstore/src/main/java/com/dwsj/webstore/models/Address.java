@@ -6,9 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-@Getter
-@Setter
-@ToString
+
 @Entity
 @Table(name = "Address")
 public class Address {
@@ -47,5 +45,51 @@ public class Address {
         this.country = country;
     }
 
+    public Address(int id, int buildingNumber, String street, String city, String country) {
+        this.id = id;
+        this.buildingNumber = buildingNumber;
+        this.street = street;
+        this.city = city;
+        this.country = country;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getBuildingNumber() {
+        return buildingNumber;
+    }
+
+    public void setBuildingNumber(int buildingNumber) {
+        this.buildingNumber = buildingNumber;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }
