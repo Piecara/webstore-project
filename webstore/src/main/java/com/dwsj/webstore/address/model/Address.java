@@ -1,4 +1,4 @@
-package com.dwsj.webstore.models;
+package com.dwsj.webstore.address.model;
 
 
 import lombok.Getter;

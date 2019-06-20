@@ -1,4 +1,4 @@
-package com.dwsj.webstore.models;
+package com.dwsj.webstore.anorderproduct;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +18,7 @@ public class AnOrderProduct {
 
   //  @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH, CascadeType.PERSIST,CascadeType.REFRESH})
   //  @JoinColumn(name = "id")
-  //  private AnOrder anOrder;
+  //  private anorder anOrder;
 
     @Column(name = "id_anOrder")
     private  int idAnOrder;

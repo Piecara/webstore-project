@@ -90,10 +90,7 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>5.1.4.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
+
 		<dependency>
 			<!-- Starter for using Spring Security -->
 			<groupId>org.springframework.boot</groupId>

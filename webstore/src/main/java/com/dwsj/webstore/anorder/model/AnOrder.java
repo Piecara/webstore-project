@@ -1,14 +1,14 @@
-package com.dwsj.webstore.models;
+package com.dwsj.webstore.anorder.model;
 
+import com.dwsj.webstore.delivery.model.Delivery;
+import com.dwsj.webstore.payment.Payment;
 import com.dwsj.webstore.product.model.Product;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -47,6 +47,10 @@ public class AnOrder {
 
 
     public AnOrder() {
+    }
+
+    public AnOrder(int id) {
+        this.id = id;
     }
 
     public AnOrder(int idClient, Delivery delivery, Payment payment, Set<Product> products) {

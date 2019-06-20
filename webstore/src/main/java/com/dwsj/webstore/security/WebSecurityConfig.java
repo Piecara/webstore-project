@@ -9,31 +9,45 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+
+    @Autowired
+    private DataSource dataSource;
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception{
-        authenticationMgr.inMemoryAuthentication()
-                .withUser("devuser").password("{noop}dev").authorities("ROLE_USER")
-                .and()
-                .withUser("adminuser").password("{noop}admin").authorities("ROLE_USER","ROLE_ADMIN");
+        authenticationMgr.jdbcAuthentication().dataSource(dataSource).passwordEncoder(new BCryptPasswordEncoder())
+                .usersByUsernameQuery(
+                        "select username,password, enabled from a_user where username=?")
+                .authoritiesByUsernameQuery(
+                        "select username, authority from authorities where username=?");
+               // .passwordEncoder(new BCryptPasswordEncoder());
     }
 
-    //Authorization
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-                .antMatchers("/products/").hasRole("USER")
-                .antMatchers("/clients/").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .antMatchers("/products/add/*").permitAll()
+                .antMatchers("/clients/*").hasRole("ADMIN")
+                .anyRequest().permitAll()
+                .and()
+                .formLogin().defaultSuccessUrl("/clients/")
                 .and()
                 .httpBasic();
     }
 
+
 }
+
+

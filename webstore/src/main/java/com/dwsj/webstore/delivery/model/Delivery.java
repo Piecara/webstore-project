@@ -1,5 +1,6 @@
-package com.dwsj.webstore.models;
+package com.dwsj.webstore.delivery.model;
 
+import com.dwsj.webstore.address.model.Address;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

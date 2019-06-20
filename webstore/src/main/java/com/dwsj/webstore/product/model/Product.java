@@ -1,6 +1,6 @@
 package com.dwsj.webstore.product.model;
 
-import com.dwsj.webstore.models.AnOrder;
+import com.dwsj.webstore.anorder.model.AnOrder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter

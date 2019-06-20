@@ -61,7 +61,45 @@ CREATE TABLE Address(
 );
 /
 
+DROP TABLE A_USER CASCADE CONSTRAINTS;
+create Table Authorities(
+    USERNAME VARCHAR2(40) PRIMARY KEY,
+    AUTHORITY VARCHAR2(20)
+);
+CREATE TABLE A_USER(
+    USERNAME VARCHAR2(40) PRIMARY KEY,
+    PASSWORD VARCHAR2(40),
+    CLIENT_ID NUMBER(6)
+);
 
+ALTER TABLE Authorities ADD FOREIGN KEY (USERNAME) REFERENCES A_USER(USERNAME);
+ALTER TABLE A_USER ADD FOREIGN KEY (CLIENT_ID) REFERENCES AN_CLIENT(ID);
+
+???
+INSERT INTO A_USER VALUES('EMAIL','PASSWORD',1,NULL);
+INSERT INTO AUTHORITIES VALUES('EMAIL','ADMIN');
+
+DROP TABLE A_USER CASCADE CONSTRAINTS;
+DROP TABLE AUTHORITIES CASCADE CONSTRAINTS;
+
+create Table Authorities(
+    USERNAME VARCHAR2(40) NOT NULL,
+    AUTHORITY VARCHAR2(20)
+);
+CREATE TABLE A_USER(
+    USERNAME VARCHAR2(40) PRIMARY KEY,
+    PASSWORD VARCHAR2(40),
+    enabled number(1) not null,
+    CLIENT_ID NUMBER(6)
+);
+
+ALTER TABLE Authorities ADD FOREIGN KEY (USERNAME) REFERENCES A_USER(USERNAME);
+ALTER TABLE A_USER ADD FOREIGN KEY (CLIENT_ID) REFERENCES AN_CLIENT(ID);
+
+select * from a_user;
+select * from authorities;
+select * from an_client;
+??
 ALTER TABLE An_Order ADD FOREIGN KEY (id_client) REFERENCES An_Client(id);
 ALTER TABLE An_Order ADD FOREIGN KEY (id_delivery) REFERENCES Delivery(id);
 ALTER TABLE An_Order ADD FOREIGN KEY (id_payment) REFERENCES Payment(id); 
@@ -76,6 +114,13 @@ ALTER TABLE An_Order_Product ADD FOREIGN KEY (id_product) REFERENCES Product(id)
 
 INSERT INTO Product VALUES(1,'mydlo',200,'non','non-desc',35,10);
 
+
+insert into ROLE values(1,'ADMIN');
+insert into ROLE values(2,'USER');
+
+insert into ADDRESS values(1,1,'street','city','county');
+insert into AN_CLIENT values(1,'email','name','password','surname','0000',1);
+select * from an_client;
 
 
 insert into Product (id, category, description, in_stock, name, price, sold) values (1, 'Baby', 'vel nulla eget eros elementum pellentesque quisque porta', 425, 'Potatoes - Purple, Organic', 83, 45);
