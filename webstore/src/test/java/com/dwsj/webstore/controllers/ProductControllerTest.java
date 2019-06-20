@@ -1,4 +1,4 @@
-package com.dwsj.webstore.controllers;
+/* package com.dwsj.webstore.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -35,7 +35,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import javax.validation.constraints.AssertTrue;
-
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = ProductController.class)
@@ -92,3 +91,5 @@ public class ProductControllerTest {
 
 
 }
+
+*/

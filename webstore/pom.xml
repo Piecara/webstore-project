@@ -84,18 +84,20 @@
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<!--
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>5.1.4.RELEASE</version>
 		</dependency>
-
 		<dependency>
-			<!-- Starter for using Spring Security -->
+
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+ -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

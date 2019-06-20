@@ -1,5 +1,6 @@
 package com.dwsj.webstore.product.controller;
 
+import com.dwsj.webstore.client.model.AnClient;
 import com.dwsj.webstore.product.repository.ProductRepository;
 import com.dwsj.webstore.product.service.ProductService;
 import com.dwsj.webstore.product.model.Product;
@@ -25,7 +26,7 @@ public class ProductController {
 
     @GetMapping(value = "/", consumes = MediaType.ALL_VALUE)
     public List<Product>gap() {
-        return productRepository.findAll();
+        return productService.findAll();
     }
 
     @GetMapping(value = "/name/{name}")
@@ -33,7 +34,7 @@ public class ProductController {
         return productService.findByName(name);
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
+    @GetMapping(value = "/{id}")
     public Product gpbi(@PathVariable final int id) {
         return productService.findById(id);
     }
@@ -44,10 +45,9 @@ public class ProductController {
     }
 
     @ResponseStatus(code = HttpStatus.CREATED)
-    @PostMapping(value = "/", consumes = MediaType.TEXT_PLAIN_VALUE)
-    public Product ap(@RequestBody final Product product) {
+    @PostMapping(value = "/", consumes = MediaType.ALL_VALUE)
+    public void  ap(@RequestBody final Product product) {
         productService.saveProduct(product);
-        return productService.findById(product.getId());
     }
 
     @ResponseStatus(code = HttpStatus.ACCEPTED)

@@ -17,7 +17,7 @@ public class AddressController {
     AddressRepository repository;
 
     @ResponseStatus(code = HttpStatus.CREATED)
-    @PostMapping(value = "/")
+    @PostMapping(value = "//")
     public void addAddress(@RequestBody final Address address) {
         repository.save(address);
     }
