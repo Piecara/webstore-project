@@ -1,0 +1,19 @@
+{{diagnostic}}
+<form>
+<div class="form-group">
+  <label for="delivery_type">Delivery Type</label>
+  <select class="form-control"  id="delivery"
+          required
+          [(ngModel)]="model.delivery_type" name="delivery_type">
+    <option *ngFor="let type of deliveryType" [value]="type">{{type}}</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="payment_type">Payment Type</label>
+  <select class="form-control"  id="payment"
+          required
+          [(ngModel)]="payment.payment_type" name="payment_type">
+    <option *ngFor="let type of paymentType" [value]="type">{{type}}</option>
+  </select>
+</div>
+</form>

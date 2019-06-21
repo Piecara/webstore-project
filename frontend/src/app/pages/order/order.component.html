@@ -1,0 +1,30 @@
+<h1>Adrress from</h1>
+{{diagnostic}}
+<form  (ngSubmit)="onSubmit()" #adresForm="ngForm">
+  <div class="form-group">
+    <label for="country">Country</label>
+    <input type="text" class="form-control" id="country" required
+    [(ngModel)]="model.country" name="country">
+  </div>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city"
+    [(ngModel)]="model.city" name="city">
+  </div>
+
+  <div class="form-group">
+    <label for="street">Street</label>
+    <input type="text" class="form-control" id="street"
+    [(ngModel)]="model.street" name="street">
+  </div>
+
+  <div class="form-group">
+    <label for="building_nubmer">Building nubmer</label>
+    <input type="text" class="form-control" id="building_nubmer"
+    [(ngModel)]="model.building_number" name="Building_nubmer">
+  </div>
+
+  <button type="button" class="btn btn-primary" (click)="onSubmit()" [routerLink]="[ '/userOrder' ]">Save Address</button>
+
+</form>

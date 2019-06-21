@@ -17,10 +17,6 @@ public class Delivery {
     @Column(name = "id")
     private int id;
 
-    @OneToOne()
-    @JoinColumn(name = "id_address")
-    private Address address;
-
     @Column(name = "delivery_type")
     private String deliveryType;
 
