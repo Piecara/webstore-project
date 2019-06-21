@@ -143,3 +143,10 @@ insert into Product (id, category, description, in_stock, name, price, sold) val
 insert into Product (id, category, description, in_stock, name, price, sold) values (18, 'Games', 'mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis', 140, 'The Pop Shoppe Pinapple', 51, 94);
 insert into Product (id, category, description, in_stock, name, price, sold) values (19, 'Computers', 'odio elementum eu interdum eu tincidunt in leo maecenas', 25, 'Lettuce - Lolla Rosa', 1, 6);
 insert into Product (id, category, description, in_stock, name, price, sold) values (20, 'Music', 'ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus', 444, 'Pears - Bartlett', 74, 99);
+
+
+
+
+insert into payment values(1,'przelew');
+insert into payment values(2,'gowotówka - odbiór');
+insert into payment values(3,'blik');

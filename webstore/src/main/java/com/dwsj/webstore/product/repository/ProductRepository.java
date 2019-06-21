@@ -8,13 +8,13 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
 
+
 @Repository
 @Transactional
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT p FROM Product p WHERE p.category = :category")
     List<Product> findProductsByCategory(@Param("category") String category);
-
     Product findByName(String name);
     Product findById(int id);
     void deleteById(Long id);

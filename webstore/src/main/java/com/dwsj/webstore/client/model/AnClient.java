@@ -24,7 +24,7 @@ public class AnClient {
     @Column(name = "surname")
     private String surname;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "id_address")
     private Address address;
 
@@ -39,7 +39,6 @@ public class AnClient {
         this.id = client.id;
         this.name = client.name;
         this.surname = client.surname;
-
         this.address = new Address(client.getAddress().getId(),
                                    client.getAddress().getBuildingNumber(),
                                    client.getAddress().getStreet(),

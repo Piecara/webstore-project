@@ -11,6 +11,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * zmapowana klasa produktu
+ */
 @Getter
 @Setter
 @ToString
@@ -50,6 +53,17 @@ public class Product {
     }
 
     public Product(String name, int price, String category, String description, int inStock, int sold, Set<AnOrder> anOrders) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.description = description;
+        this.inStock = inStock;
+        this.sold = sold;
+        this.anOrders = anOrders;
+    }
+
+    public Product(int id, String name, int price, String category, String description, int inStock, int sold, Set<AnOrder> anOrders) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;

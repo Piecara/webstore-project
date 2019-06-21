@@ -16,6 +16,22 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
 
+
+    @Override
+    public void updateProd(int id) {
+        Product product = productRepository.findById(id);
+        int decreaseStock = product.getInStock() - 1;
+        product.setInStock(decreaseStock);
+        productRepository.save(product);
+    }
+    @Override
+    public void updateProdAmount(int id, int amount) {
+        Product product = productRepository.findById(id);
+        int decreaseStock = product.getInStock() - amount;
+        product.setInStock(decreaseStock);
+        productRepository.save(product);
+    }
+
     @Override
     public List<Product> findAll() {
         return productRepository.findAll();

@@ -1,95 +1,103 @@
-/* package com.dwsj.webstore.controllers;
+/*
+package com.dwsj.webstore.controllers;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
-import com.dwsj.webstore.product.controller.ProductController;
 import com.dwsj.webstore.product.model.Product;
-import com.dwsj.webstore.product.service.ProductService;
-import com.dwsj.webstore.util.JsonConverter;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runner.notification.RunListener;
-import org.mockito.Mock;
-import org.springframework.test.web.servlet.*;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import javax.validation.constraints.AssertTrue;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.dwsj.webstore.product.controller.ProductController;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = ProductController.class)
+@WebMvcTest(ProductController.class)
 public class ProductControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mvc;
 
     @MockBean
-    ProductService productService;
+    private ProductController controller;
+
 
     @Test
-    public void getProductById() throws Exception {
-        mockMvc.perform( MockMvcRequestBuilders
-                .get("/products/id/{id}",1)
+    public void getAllProductsAPI() throws Exception
+    {
+        mvc.perform( MockMvcRequestBuilders
+                .get("/products/")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.productId").value(1));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.employees").doesNotExist());
+    }
+//
+//    @Test
+//    public void getProductByIdAPI() throws Exception
+//    {
+//        mvc.perform( MockMvcRequestBuilders
+//                .get("/products/{id}", 1)
+//                .accept(MediaType.APPLICATION_JSON))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.employeeId").value(1));
+//    }
+
+    @Test
+    public void testExample() throws Exception {
+        given(this.controller.gpbi(1))
+                .willReturn(new Product("name",100,"category","description",100,100, null));
+
+            this.mvc.perform(get("/products/").accept(MediaType.TEXT_PLAIN))
+                .andExpect(status().isOk()).andExpect((ResultMatcher) content().string("name 100 category description 100 100 null"));
     }
 
 
     @Test
-    public void addProduct() throws Exception {
+    public void test_get_all_success() throws Exception {
+        List<Product> products = Arrays.asList(
+                new Product(1,"name",1,"category","description",1,1,null));
+        when(controller.gap()).thenReturn(products);
 
-        Product product = new Product();
-        product.setId(987654);
-        product.setCategory("PC and Laptops");
-        product.setDescription("description example");
-        product.setInStock(200);
-        product.setName("HP");
-        product.setPrice(5000);
-        product.setSold(2);
-
-
-
-
-
-        mockMvc.perform( MockMvcRequestBuilders
-                .post("/products/add")
-                .content(JsonConverter.toJson(product))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated() )
-                .andExpect(MockMvcResultMatchers.jsonPath("$.productId").exists());
+        mvc.perform(get("/products/"))
+                .andExpect(status().isOk());
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+//                .andExpect(jsonPath("$", hasSize(2)))
+//                .andExpect(jsonPath("$[0].id", is(1)))
+//                .andExpect(jsonPath("$[0].username", is("Daenerys Targaryen")))
+//                .andExpect(jsonPath("$[1].id", is(2)))
+//                .andExpect(jsonPath("$[1].username", is("John Snow")));
+//        verify(userService, times(1)).getAll();
+//        verifyNoMoreInteractions(userService);
     }
+//
+//    @Test
+//    public void test_get_by_id_success() throws Exception {
+//
+//        Product product =
+//                new Product(1,"name",1,"category","description",1,1,null);
+//        when(controller.gpbi(1)).thenReturn(product);
+//
+//        mvc.perform(get("/users/{id}", 1))
+//                .andExpect(status().isOk());
+//    }
 
-
-    @Test
-    public void deleteProductById() throws Exception {
-        mockMvc.perform( MockMvcRequestBuilders.delete("/products/delete/{id}", 1) )
-                .andExpect(status().isAccepted());
-    }
 
 
 }
-
 */

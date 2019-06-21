@@ -16,7 +16,7 @@ public class DeliveryController {
     DeliveryRepository repository;
 
     @ResponseStatus(code = HttpStatus.CREATED)
-    @PostMapping()
+    @PostMapping("/add/deli")
     public void addDelivery(@RequestBody final Delivery delivery) {
         repository.save(delivery);
     }

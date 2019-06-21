@@ -11,8 +11,11 @@ public interface ProductService {
     Product findById(int id);
     Product findByName(String name);
     List<Product> findProductsByCategory(String category);
+    void updateProd(int id);
+    void updateProdAmount(int id, int amount);
     void saveProduct(Product product);
     List<Product> findAll();
     void deleteById(Long id);
+
 }
 

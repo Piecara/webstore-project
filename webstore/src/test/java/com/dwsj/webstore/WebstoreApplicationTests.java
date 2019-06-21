@@ -1,4 +1,4 @@
-package com.dwsj.webstore;
+/*package com.dwsj.webstore;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,3 +14,4 @@ public class WebstoreApplicationTests {
 	}
 
 }
+*/

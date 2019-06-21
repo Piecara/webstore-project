@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Optional;
 
 
+/**
+ * kontroler pozwalajacy na operacje crud dla produktu
+ */
 @RestController()
 @RequestMapping("/products")
 public class ProductController {
@@ -42,6 +45,15 @@ public class ProductController {
     @GetMapping(value = "/category/{category}")
     public List<Product> gpbc(@PathVariable final String category) {
         return productService.findProductsByCategory(category);
+    }
+
+    @PatchMapping(value = "/update/{id}")
+    public void updateProduct(@PathVariable final int id){
+        productService.updateProd(id);
+    }
+    @PatchMapping(value = "/update/{id}/{amount}")
+    public void updateProduct(@PathVariable(value = "id") final int id, @PathVariable(value = "amount") final int amount){
+        productService.updateProdAmount(id,amount);
     }
 
     @ResponseStatus(code = HttpStatus.CREATED)

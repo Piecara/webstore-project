@@ -5,6 +5,7 @@ import com.dwsj.webstore.client.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 //import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,25 +20,25 @@ public class ClientController {
     @Autowired
     ClientService clientService;
 
-    @GetMapping("/")
+    @GetMapping(value = "/" , consumes = MediaType.ALL_VALUE)
    // @PreAuthorize("hasAnyRole('ADMIN')")
     public List<AnClient> getAllClients(){
         return clientService.findAll();
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public AnClient getClientById(@PathVariable(value = "id") final int id){
         return clientService.findById(id);
     }
 
     @ResponseStatus(code = HttpStatus.CREATED)
-    @PostMapping(value = "/create/")
+    @PostMapping(value = "/", consumes = MediaType.ALL_VALUE)
     public void addClient(@RequestBody final AnClient client) {
         clientService.saveClient(client);
     }
 
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    @DeleteMapping(name = "/delete/{id}")
+    @DeleteMapping(name = "/{id}", produces = MediaType.ALL_VALUE)
     public void deleteClient(@PathVariable(value = "id") final Long id) {
         clientService.deleteById(id);
     }
